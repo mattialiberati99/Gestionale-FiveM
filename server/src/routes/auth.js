@@ -2,13 +2,11 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-router.get("/", passport.authenticate("steam", { failureRedirect: "/" }),
-  function (req, res) {
-    res.redirect("/");
-  }
-);
+router.get("/", passport.authenticate("steam"));
 
-router.get("/return", function (req, res, next) {
+router.get(
+  "/return",
+  function (req, res, next) {
     req.url = req.originalUrl;
     next();
   },
@@ -17,6 +15,5 @@ router.get("/return", function (req, res, next) {
     res.redirect("/account");
   }
 );
-
 
 module.exports = router;
