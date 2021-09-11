@@ -11,9 +11,8 @@ router.get(
 	wrap(async (req, res) => {
 		let user = await query(`SELECT * FROM users WHERE steam_id = ?`, [req.user.id])
 		if (user.length === 0) {
-			res
-				.status(404)
-				.json({ message: "Utente non trovato nel database FiveM!" })
+			res.status(404).json({ message: "Utente non trovato nel database FiveM!" })
+			return
 		}
 		res.json(user)
 	})
