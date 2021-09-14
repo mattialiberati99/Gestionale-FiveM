@@ -23,7 +23,7 @@ router.get(
 	},
 	passport.authenticate("steam", { failureRedirect: "/" }),
 	function (req, res) {
-		res.redirect("http://localhost:8080/account")
+		res.redirect("http://localhost:8080/")
 	}
 )
 
