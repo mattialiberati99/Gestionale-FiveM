@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="profilo">
     <a href="http://localhost:3000/auth">
       <button>Sign-In With Steam</button>
     </a>
@@ -9,8 +9,8 @@
       <li>{{ user.dateofbirth }}</li>
       <li>{{ user.job }}</li>
     </ul>
+    <div v-if="error">{{ error }}</div>
   </div>
-  <div v-if="error">{{ error }}</div>
 
 </template>
 
@@ -20,7 +20,7 @@ import { onMounted, ref } from "vue"
 import getUser from "../composables/getUser"
 
 export default {
-  name: "Home",
+  name: "Profilo",
   setup() {
     const { user, error, loadUser } = getUser()
 

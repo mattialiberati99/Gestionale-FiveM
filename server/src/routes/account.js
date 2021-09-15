@@ -20,7 +20,7 @@ router.get(
 
 router.get("/logout", (req, res) => {
 	req.logout()
-	res.redirect("/")
+	res.redirect("http://localhost:8080/")
 })
 
 module.exports = router
