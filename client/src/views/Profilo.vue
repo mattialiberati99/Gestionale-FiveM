@@ -1,32 +1,56 @@
 <template>
-  <div class="profilo">
-    <a href="http://localhost:3000/auth">
-      <button>Sign-In With Steam</button>
-    </a>
-    <ul v-if="!error">
-      <li>{{ user.name }}</li>
-      <li>{{ user.lastname }}</li>
-      <li>{{ user.dateofbirth }}</li>
-      <li>{{ user.job }}</li>
-    </ul>
-    <div v-if="error">{{ error }}</div>
-  </div>
+  <div id="profilo" class="main-box">
 
+    <div v-if="error || user.loggedIn.value === false">
+      <!-- Login button -->
+      <a href="http://localhost:3000/auth">Sign-In With Steam</a>
+
+      <!-- Display errors -->
+      <div class="error">{{ error }}</div>
+    </div>
+
+    <!-- Left side main content -->
+    <div class="left-main">
+      <h1>Dashboard</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ullamcorper turpis eros, non lobortis dui dignissim vitae. Mauris id est vehicula, venenatis massa vitae, consequat ipsum. Duis tristique, <b>ligula ut tempor molestie,</b> odio nisl consectetur turpis, ut facilisis turpis ex in nunc. Morbi at pulvinar quam. Praesent eget auctor dolor. <b>Maecenas feugiat pharetra tincidunt.</b> Duis at tortor finibus, suscipit tortor ullamcorper, <u>fringilla leo.</u></p>
+
+    </div>
+    <div class="right-main">
+      asdasd
+    </div>
+  </div>
 </template>
 
 <script>
-import axios from "axios"
-import { onMounted, ref } from "vue"
-import getUser from "../composables/getUser"
+import axios from "axios";
+import { onMounted, ref } from "vue";
+import getUser from "../composables/getUser";
 
 export default {
   name: "Profilo",
   setup() {
-    const { user, error, loadUser } = getUser()
+    const { user, error, loadUser } = getUser();
 
-    onMounted(loadUser())
+    loadUser();
 
-    return { user, error }
+    return { user, error };
   },
-}
+};
 </script>
+
+<style scoped>
+.error {
+  color: white;
+}
+
+h1 {
+  color: white;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
+  color: #4C4C66;
+}
+</style>

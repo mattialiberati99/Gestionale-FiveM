@@ -1,5 +1,5 @@
 <template>
-  <div id="notfound">
+  <div>
     <h1><span>404</span><br>Pagina non trovata</h1>
   </div>
 </template>
@@ -11,15 +11,15 @@ export default {
 }
 </script>
 
-<style>
-#notfound {
+<style scoped>
+div {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
 
-#notfound h1 {
+h1 {
   color: white;
   width: 100%;
   margin: auto;
@@ -27,7 +27,7 @@ export default {
   text-transform: uppercase;
 }
 
-#notfound span {
+span {
   font-size: 72px;
 }
 </style>

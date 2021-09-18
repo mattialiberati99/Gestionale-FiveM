@@ -4,33 +4,35 @@
     <!-- Left sidebar (menu, logo, discord, logout) -->
     <div id="sidebar">
       <div id="logo-box">
-        <img id="logo" src="../public/images/logo.svg" alt="dreamworld" />
+        <a href="/">
+          <img id="logo" src="../public/images/logo.svg" alt="dreamworld" />
+        </a>
         <hr class="hr-line" />
       </div>
       <div id="nav">
         <ul>
           <li>
-            <router-link to="home">Profilo</router-link>
+            <router-link to="/">Profilo</router-link>
             <hr />
           </li>
           <li>
-            <router-link to="home">Inventario</router-link>
+            <router-link to="inventario">Inventario</router-link>
             <hr />
           </li>
           <li>
-            <router-link to="home">Veicoli</router-link>
+            <router-link to="veicoli">Veicoli</router-link>
             <hr />
           </li>
           <li>
-            <router-link to="home">Case</router-link>
+            <router-link to="case">Case</router-link>
             <hr />
           </li>
           <li>
-            <router-link to="home">Transazioni</router-link>
+            <router-link to="transazioni">Transazioni</router-link>
             <hr />
           </li>
           <li>
-            <router-link to="home">Lavoro</router-link>
+            <router-link to="lavoro">Lavoro</router-link>
             <hr />
           </li>
         </ul>
@@ -39,19 +41,55 @@
       <div id="discord-logout">
         <a class="logout" href="http://localhost:3000/account/logout/">Esci</a>
         <hr class="hr-line" />
-        <button class="discord"><a href="https://discord.gg/EBtVBshu">Discord</a></button>
+        <button class="discord">
+          <a target="blank" href="https://discord.gg/EBtVBshu">Discord</a>
+        </button>
       </div>
     </div>
 
     <!-- Main div -->
     <div id="main">
+      <cerca></cerca>
+      <fixed-user></fixed-user>
       <router-view></router-view>
     </div>
-    
   </div>
 </template>
 
+<script>
+import Cerca from "./components/Cerca.vue"
+import FixedUser from "./components/FixedUser.vue"
+
+export default {
+  components: {
+    "cerca": Cerca,
+    "fixed-user": FixedUser
+  }
+}
+</script>
+
 <style>
+/* width */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #12121d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1d1d2e;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1a2b;
+}
+
 body {
   background-color: #1d1d2e;
   margin: 0;
@@ -78,7 +116,14 @@ body {
 #main {
   width: 100%;
   border-radius: 50px 0 0;
+  padding: 80px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow: auto;
 }
+
+
 
 #logo-box {
   width: fit-content;
@@ -119,7 +164,7 @@ body {
 
 #nav li a {
   color: #4c4c66;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 20px;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -148,16 +193,16 @@ body {
   text-align: center;
 }
 
-#discord-logout .logout  {
+#discord-logout .logout {
   color: #4c4c66;
   font-weight: 400;
   letter-spacing: 1px;
   text-decoration: none;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
-#discord-logout .logout:hover  {
-  color: white
+#discord-logout .logout:hover {
+  color: white;
 }
 
 #discord-logout hr {
@@ -167,9 +212,9 @@ body {
 #discord-logout .discord {
   border-radius: 60px;
   padding: 10px 50px;
-  background: linear-gradient(90deg, #5E1B95 0%, #7D005A 103.97%);
+  background: linear-gradient(90deg, #5e1b95 0%, #7d005a 103.97%);
   border: solid 2px #1d1d2e;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 #discord-logout .discord a {
@@ -187,4 +232,18 @@ body {
   background-color: #141422;
 }
 
+.main-box {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between
+}
+
+.left-main {
+  width: 70%;
+}
+
+.right-main {
+  width: 30%;
+}
 </style>
