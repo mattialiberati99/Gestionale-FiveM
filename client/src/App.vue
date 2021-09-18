@@ -57,15 +57,15 @@
 </template>
 
 <script>
-import Cerca from "./components/Cerca.vue"
-import FixedUser from "./components/FixedUser.vue"
+import Cerca from "./components/Cerca.vue";
+import FixedUser from "./components/FixedUser.vue";
 
 export default {
   components: {
-    "cerca": Cerca,
-    "fixed-user": FixedUser
-  }
-}
+    cerca: Cerca,
+    "fixed-user": FixedUser,
+  },
+};
 </script>
 
 <style>
@@ -90,6 +90,11 @@ export default {
   background: #1a1a2b;
 }
 
+::selection {
+  color: white;
+  background: #4C4C66;
+}
+
 body {
   background-color: #1d1d2e;
   margin: 0;
@@ -98,6 +103,11 @@ body {
 
 * {
   font-family: Poppins, sans-serif;
+}
+
+.highlight {
+  background: linear-gradient(90deg, #5e1b95 0%, #7d005a 103.97%);
+  color: white;
 }
 
 #wrapper {
@@ -121,9 +131,9 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   overflow: auto;
+  align-content: flex-start;
+  background-color: #141422;
 }
-
-
 
 #logo-box {
   width: fit-content;
@@ -228,22 +238,18 @@ body {
   border: solid 2px white;
 }
 
-#main {
-  background-color: #141422;
-}
-
 .main-box {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .left-main {
-  width: 70%;
+  width: 60%;
 }
 
 .right-main {
-  width: 30%;
+  width: 350px;
 }
 </style>

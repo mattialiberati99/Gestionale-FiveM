@@ -1,14 +1,39 @@
 <template>
   <div id="cerca-box">
-    <input type="text" name="cerca" id="cerca" placeholder="cerca...">
-    <img src="../../public/images/cerca.svg" alt="cerca">
+    <input
+      v-model="search"
+      type="text"
+      name="cerca"
+      id="cerca"
+      placeholder="cerca..."
+    />
+    <img src="../../public/images/cerca.svg" alt="cerca" />
   </div>
 </template>
 
 <script>
+import { ref, watch } from "vue";
+
 export default {
-  name: 'Cerca'
-}
+  name: "Cerca",
+  setup() {
+    const search = ref(null);
+
+    watch(
+      () => search.value,
+      (word) => {
+        let html = document.getElementsByClassName("main-box")[0];
+        html.innerHTML = html.innerHTML.replace(`<mark class="highlight">`, '');
+        html.innerHTML = html.innerHTML.replace(`</mark>`, '');
+        if (html.outerText.includes(word) && word !== "" && word.length > 3) {
+          html.innerHTML = html.innerHTML.replace(word,`<mark class="highlight">${word}</mark>`);
+        }
+      }
+    );
+
+    return { search };
+  },
+};
 </script>
 
 <style scoped>
@@ -16,11 +41,11 @@ export default {
   position: relative;
   display: inline;
   width: fit-content;
-  height: fit-content
+  height: fit-content;
 }
 
 input {
-  background: #1D1D2E;
+  background: #1d1d2e;
   color: white;
   font-family: Poppins, sans-serif;
   font-style: normal;
@@ -45,5 +70,4 @@ img {
   top: 50%;
   transform: translate(0, -50%);
 }
-
 </style>

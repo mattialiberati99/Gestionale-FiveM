@@ -4,13 +4,14 @@ import { ref } from "vue"
 const getUser = () => {
   // user object
   const user = {
-    loggedIn: false,
     name: ref(null),
     lastname: ref(null),
     dateofbirth: ref(null),
     job: ref(null),
     phone: ref(null),
-    picture: ref(null)
+    picture: ref(null),
+    sex: ref(null),
+    height: ref(null)
   }
 
   // error
@@ -27,13 +28,14 @@ const getUser = () => {
       })
       .then((response) => {
         const data = response.data[0]
-        user.loggedIn = true
         user.name.value = data.firstname
         user.lastname.value = data.lastname
         user.dateofbirth.value = data.dateofbirth
         user.job.value = data.job
         user.phone.value = data.phone
         user.picture.value = data.picture
+        user.sex.value = data.sex
+        user.height.value = data.height
       })
       .catch((err) => {
         if (err.response.status == 404) {
@@ -48,3 +50,15 @@ const getUser = () => {
 }
 
 export default getUser
+
+/* Nome
+Cognome
+Data di nascita
+Sesso
+Altezza
+
+Lavoro
+Grado
+Patente
+Porto d'armi
+numero di telefono */
