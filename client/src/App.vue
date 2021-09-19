@@ -49,7 +49,7 @@
 
     <!-- Main div -->
     <div id="main">
-      <cerca></cerca>
+      <cerca v-if="error.value != null"></cerca>
       <fixed-user></fixed-user>
       <router-view></router-view>
     </div>
@@ -57,18 +57,31 @@
 </template>
 
 <script>
+import { onMounted } from '@vue/runtime-core';
 import Cerca from "./components/Cerca.vue";
 import FixedUser from "./components/FixedUser.vue";
+import getUser from "./composables/getUser";
+import { watch } from 'vue';
 
 export default {
   components: {
     cerca: Cerca,
     "fixed-user": FixedUser,
   },
+  setup() {
+    const { user, error, loadUser } = getUser();
+    
+    onMounted(loadUser)
+    return { user, error, loadUser };
+  }
 };
 </script>
 
 <style>
+html {
+  height: 100%;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 12px;
@@ -92,17 +105,22 @@ export default {
 
 ::selection {
   color: white;
-  background: #4C4C66;
+  background: #4c4c66;
 }
 
 body {
   background-color: #1d1d2e;
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 * {
   font-family: Poppins, sans-serif;
+}
+
+.error {
+  color: rgb(138, 43, 43);
 }
 
 .highlight {
@@ -110,9 +128,13 @@ body {
   color: white;
 }
 
+#app {
+  height: 100%;
+}
+
 #wrapper {
   display: flex;
-  height: 100vh;
+  height: 100%;
 }
 
 #sidebar {
@@ -131,7 +153,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   overflow: auto;
-  align-content: flex-start;
+  align-content: space-between;
   background-color: #141422;
 }
 
@@ -203,7 +225,7 @@ body {
   text-align: center;
 }
 
-#discord-logout .logout {
+.logout {
   color: #4c4c66;
   font-weight: 400;
   letter-spacing: 1px;
@@ -211,7 +233,7 @@ body {
   transition: 0.3s ease;
 }
 
-#discord-logout .logout:hover {
+.logout:hover {
   color: white;
 }
 
@@ -219,22 +241,23 @@ body {
   margin: 30px auto;
 }
 
-#discord-logout .discord {
+.discord {
   border-radius: 60px;
   padding: 10px 50px;
   background: linear-gradient(90deg, #5e1b95 0%, #7d005a 103.97%);
   border: solid 2px #1d1d2e;
   transition: 0.3s;
+  height: fit-content;
 }
 
-#discord-logout .discord a {
+.discord a {
   color: white;
   text-decoration: none;
   letter-spacing: 1px;
   font-weight: 400;
 }
 
-#discord-logout .discord:hover {
+.discord:hover {
   border: solid 2px white;
 }
 

@@ -23,10 +23,14 @@ export default {
       () => search.value,
       (word) => {
         let html = document.getElementsByClassName("main-box")[0];
-        html.innerHTML = html.innerHTML.replace(`<mark class="highlight">`, '');
-        html.innerHTML = html.innerHTML.replace(`</mark>`, '');
+        html.innerHTML = html.innerHTML.replace(`<mark class="highlight">`, "");
+        html.innerHTML = html.innerHTML.replace(`</mark>`, "");
+        // @ts-ignore
         if (html.outerText.includes(word) && word !== "" && word.length > 3) {
-          html.innerHTML = html.innerHTML.replace(word,`<mark class="highlight">${word}</mark>`);
+          html.innerHTML = html.innerHTML.replace(
+            word,
+            `<mark class="highlight">${word}</mark>`
+          );
         }
       }
     );

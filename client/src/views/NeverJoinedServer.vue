@@ -1,12 +1,13 @@
 <template>
   <div class="main-box">
-    <h1><span>404</span><br>Pagina non trovata</h1>
+    <h1><span>Errore!</span><br>Prima entra nel server!</h1>
+    <button class="discord"><a href="https://fivem.net/">Accedi al server</a></button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NotFound",
+  name: "NeverJoinedServer",
 }
 </script>
 
@@ -24,6 +25,7 @@ h1 {
   margin: auto;
   text-align: center;
   text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
 span {

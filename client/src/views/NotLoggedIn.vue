@@ -1,13 +1,14 @@
 <template>
   <div class="main-box">
-    <h1><span>404</span><br>Pagina non trovata</h1>
+    <h1><span>Errore!</span><br />Accedi con Steam!</h1>
+    <button class="discord"><a href="http://localhost:3000/auth/">Login</a></button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NotFound",
-}
+  name: "NotLoggedIn",
+};
 </script>
 
 <style scoped>
@@ -24,6 +25,7 @@ h1 {
   margin: auto;
   text-align: center;
   text-transform: uppercase;
+  margin-bottom: 30px;
 }
 
 span {

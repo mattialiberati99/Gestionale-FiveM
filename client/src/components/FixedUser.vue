@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!error" id="fixeduser">
+  <div id="fixeduser">
     <div id="text">
       <h3 id="bentornato">Bentornato</h3>
       <h3>{{ user.name.value }} {{ user.lastname.value }}</h3>
@@ -16,9 +16,10 @@ export default {
   setup() {
     const { user, error, loadUser } = getUser();
 
-    loadUser();
-
-    return { error, user };
+    return { user, loadUser };
+  },
+  created() {
+    this.loadUser();
   },
 };
 </script>

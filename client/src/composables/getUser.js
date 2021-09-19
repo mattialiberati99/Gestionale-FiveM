@@ -1,5 +1,6 @@
 import axios from "axios"
 import { ref } from "vue"
+import router  from "../router/index.js"
 
 const getUser = () => {
   // user object
@@ -14,13 +15,13 @@ const getUser = () => {
     height: ref(null)
   }
 
-  // error
+  // Error
   const error = ref(null)
 
-  // get user data
+  // Get user data
   const loadUser = async () => {
     await axios
-      .get("http://localhost:3000/account", {
+      .get("http://localhost:3000/accounts", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,8 +41,10 @@ const getUser = () => {
       .catch((err) => {
         if (err.response.status == 404) {
           error.value = "Errore: Utente non trovato nel database Fivem"
+          router.push("neverjoined")
         } else if (err.response.status == 500) {
           error.value = "Errore: Non hai effettuato l'accesso con Steam"
+          router.push("NotLoggedIn")
         }
       })
   }
